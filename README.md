@@ -4,6 +4,18 @@ It can take some effort to create an iBeacon app, especially if you want it to b
 
 Read the full guide on the [Evothings website](http://evothings.com/quick-guide-to-writing-mobile-ibeacon-applications-in-javascript/).
 
+
+## Setup
+1. Clone repo
+1. Download and install this http://evothings.com/download/
+1. Create cloud token (page above)
+1. Enter cloud token in app on the `connect` tab
+1. Get a new key by clicking the button on the `connect` tab
+1. Open the `My Apps` tab, drag and drop the `index.html` of this directory in
+1. Click run
+1. Install `evo things` app on your Android phone
+1. Open app
+
 <!--
 ## What are iBeacons?
 
