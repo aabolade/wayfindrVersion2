@@ -1,30 +1,37 @@
 // JavaScript code for the Arduino Beacon example app.
+var beaconsListSrc = 'https://api.tfl.gov.uk/wayfindr/beacons';
+
+$.get(beaconsListSrc, function(data) {
+	// data = [{}, {}]
+	data.forEach(function (beacon) {
+		// beacon = {}
+		beacon = {
+			id: beacon.Name.trim().replace(/\s/g, '-').toLowerCase() + '-' + beacon.beaconID,
+			uuid: beacon.UUID.trim(),
+			major: beacon.Major,
+			minor: beacon.Minor
+		};
+
+		console.log(beacon.id);
+
+		if (beacon.id === 'walkway13') {
+			app.beaconRegions.push(beacon);
+		}
+	});
+});
 
 // Application object.
 var app = {}
 
 // Regions that define which page to show for each beacon.
-app.beaconRegions =
-[
-	{
-		id: 'page-feet',
-		uuid:'A4950001-C5B1-4B44-B512-1370F02D74DE',
-		major: 1,
-		minor: 1
-	},
-	{
-		id: 'page-shoulders',
-		uuid:'A4950001-C5B1-4B44-B512-1370F02D74DE',
-		major: 1,
-		minor: 2
-	},
-	{
-		id: 'page-face',
-		uuid:'A4950001-C5B1-4B44-B512-1370F02D74DE',
-		major: 1,
-		minor: 3
-	}
-]
+app.beaconRegions = [];
+// app.beaconRegions =
+// 	[{
+// 		id: 'page-feet',
+// 		uuid:'852c0828-fe67-4dd7-b8ff-52852a66851e',
+// 		major: 8008,
+// 		minor: 1337
+// 	}]
 
 // Currently displayed page.
 app.currentPage = 'page-default'
